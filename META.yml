@@ -1,0 +1,26 @@
+---
+abstract: ~
+author:
+  - ', 2012 Ohio-Pennsylvania Software, LLC.'
+build_requires:
+  ExtUtils::MakeMaker: 6.42
+configure_requires:
+  ExtUtils::MakeMaker: 6.42
+distribution_type: module
+generated_by: 'Module::Install version 1.02'
+license: perl
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: IPTables-Mangle
+no_index:
+  directory:
+    - inc
+    - t
+requires:
+  IPC::Open3: 0
+  YAML: 0
+  perl: 5.8.4
+resources:
+  license: http://dev.perl.org/licenses/
+version: 0.01
