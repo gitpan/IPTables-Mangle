@@ -1,5 +1,5 @@
 ---
-abstract: ~
+abstract: 'Manage iptables rules with Perl / YAML'
 author:
   - ', 2012 Ohio-Pennsylvania Software, LLC.'
 build_requires:
@@ -23,4 +23,4 @@ requires:
   perl: 5.8.4
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.01
+version: 0.02

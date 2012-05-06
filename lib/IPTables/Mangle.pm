@@ -2,11 +2,11 @@ package IPTables::Mangle;
 use strict;
 use warnings;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 =head1 NAME
 
-IPTables::Mangle
+IPTables::Mangle - Manage iptables rules with Perl / YAML
 
 =head1 SYNOPSIS
 
@@ -56,18 +56,22 @@ Example YAML file, for ease of viewing:
                  action_options:
                      reject-with: icmp-admin-prohibited
 
-=head2 TABLES
+=head1 DESCRIPTION
+
+This module allows for the management of iptables rules with Perl / YAML.
+
+=head1 TABLES
 
 The top hashref is the table for iptables, this can be either mangle, nat, or filter. 
 
-=head2 CHAINS
+=head1 CHAINS
 
 The hashref under the top hashref is the chain name.  For system chains the default chainrule can
 be set by setting a default hashref in the chain.
 
 $VAR1->{filter}{input} would be the input chain for the filter table.
 
-=head2 CHAIN RULES
+=head1 CHAIN RULES
 
 Chainrules live in a 'rules' arrayref under the chain, $VAR1->{filter}{input}{rules}, for example.
 
@@ -227,6 +231,11 @@ Copyright 2011, 2012 Ohio-Pennsylvania Software, LLC.
 
 This library is free software. You can redistribute it and/or modify it under the same terms as Perl itself.
 
+=head1 AUTHOR
+
+Michael J. Flickinger, C<< <mjflick@gnu.org> >>
+
 =cut
+
 
 

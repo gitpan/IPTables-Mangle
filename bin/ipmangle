@@ -7,7 +7,7 @@ use IPTables::Mangle;
 
 =head1 NAME
 
-ipmangle
+ipmangle - Manage iptables rules with YAML files
 
 =head1 SYNOPSIS
 
@@ -19,9 +19,11 @@ ipmangle
    --test     | tests rules
    out=[file] | dumps iptables rules to file
 
-=head1 EXAMPLE FILE
+=head1 CONFIGURATION FILE
 
-Example YAML file, for ease of viewing:
+The configuration file is a YAML data-structure interpreted by the L<IPTables::Mangle> module.
+
+=head1 EXAMPLE FILE
 
    filter:
        forward: { default: drop }
@@ -64,60 +66,6 @@ Example YAML file, for ease of viewing:
                - action: reject
                  action_options:
                      reject-with: icmp-admin-prohibited
-
-=head2 TABLES
-
-The top hashref is the table for iptables, this can be either mangle, nat, or filter. 
-
-=head2 CHAINS
-
-The hashref under the top hashref is the chain name.  For system chains the default chainrule can
-be set by setting a default hashref in the chain.
-
-$VAR1->{filter}{input} would be the input chain for the filter table.
-
-=head2 CHAIN RULES
-
-Chainrules live in a 'rules' arrayref under the chain, $VAR1->{filter}{input}{rules}, for example.
-
-Every rule in the chain is a hashref which builds a rule.  By default, the jump in the rules, referenced
-as 'action' in a rule, is set to accept.  The default action can be modified by changing 
-'default_rule_action' in the chain.  Every key in the rule's hashref represents a parameter prefixed by two dashes, '--', 
-in an iptables rule.  Two things to note here are that 'action' in a rule really maps to 'jump' in iptables, and 
-a special action_options key exists, which references a hashref, which appends options after the iptables jump.  This is 
-useful for things like setting '--reject-with' after a jump to reject.
-
-
-Examples of a chain rule:
-
-
-# by default, allow this ip
-
-$VAR1->{filter}{input}{rules}[0] = { src => '10.10.10.10' } ;
-
-
-# allow this ip on port 25 tcp, using accept default
-
-$VAR1->{filter}{input}{rules}[1] = { protocol: 'tcp', dport: 25, src => '10.10.10.10' } ;
-
-
-# make it explicit
-
-$VAR1->{filter}{input}{rules}[2] = { protocol: 'tcp', dport: 25, src => '10.10.10.10', action => 'accept' } ;
-
-
-# blacklist an ip
-
-$VAR1->{filter}{input}{rules}[3] = { src => '10.10.10.10', action => 'drop' } ;
-
-# reject with icmp  message
-
-$VAR1->{filter}{input}{rules}[-1] = {
-    action => 'reject', 
-    action_options => {
-        reject-with: 'icmp-admin-prohibited',
-    },
-};
 
 =cut
 
@@ -279,4 +227,9 @@ Copyright 2011, 2012 Ohio-Pennsylvania Software, LLC.
 
 This library is free software. You can redistribute it and/or modify it under the same terms as Perl itself.
 
+=head1 AUTHOR
+
+Michael J. Flickinger, C<< <mjflick@gnu.org> >>
+
 =cut
+
