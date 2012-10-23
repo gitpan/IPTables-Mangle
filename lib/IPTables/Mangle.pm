@@ -2,7 +2,7 @@ package IPTables::Mangle;
 use strict;
 use warnings;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 =head1 NAME
 
@@ -182,8 +182,8 @@ sub _process_table
     {
         $table_out .= &_process_rule({
             target => (
-                uc($_->{action}) 
-             || uc($config->{$table}{$chain}{default_rule_action}) 
+                uc($_->{action} || '') 
+             || uc($config->{$table}{$chain}{default_rule_action} || '') 
              || 'ACCEPT'),
             chain  => uc($chain),
             rule   => $_
