@@ -2,7 +2,7 @@ package IPTables::Mangle;
 use strict;
 use warnings;
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 =head1 NAME
 
@@ -223,19 +223,14 @@ sub _process_rule
 
 1;
 
-=head1 COPYRIGHT
+=head1 AUTHORS
 
-Copyright 2011, 2012 Ohio-Pennsylvania Software, LLC.
+Bizowie <http://bizowie.com>
 
-=head1 LICENSE
+=head1 COPYRIGHT AND LICENSE
+
+Copyright (C) 2013 Bizowie
 
 This library is free software. You can redistribute it and/or modify it under the same terms as Perl itself.
 
-=head1 AUTHOR
-
-Michael J. Flickinger, C<< <mjflick@gnu.org> >>
-
 =cut
-
-
-
